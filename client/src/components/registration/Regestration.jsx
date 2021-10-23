@@ -6,7 +6,7 @@ class Registration extends React.Component {
         this.state= {
             name: '',
             lastName: '',
-            fitstName: '',
+            fitstName: '', 
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -20,7 +20,7 @@ class Registration extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         console.log('form submitted and email value is', this.state.name);
-        fetch('http://localhost:5000/api/listen',{
+        fetch('http://localhost:5000/users/add',{
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

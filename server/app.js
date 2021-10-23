@@ -20,14 +20,7 @@ const pool = mysql.createPool({
     database        : 'testnodejs',
 });
 
-// connection.connect(function(err){
-//     if (err) {
-//       return console.error("Ошибка: " + err.message);
-//     }
-//     else{
-//       console.log("Подключение к серверу MySQL успешно установлено");
-//     }
-//  });
+
 
 
 app.get('', (req, res) =>{
