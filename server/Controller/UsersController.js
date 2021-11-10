@@ -1,6 +1,5 @@
 const response = require('./../response');
 const pool = require('../settings/db');
-
 exports.users = (req, res) => {
     pool.getConnection((err, connection) =>{
         if(err) throw err;
@@ -29,7 +28,8 @@ exports.add =(req, res) => {
             connection.release(); // return the connection to  pool
 
             if(!err) {
-                res.send('Name with the record ID  has been added.');
+
+                res.send('User successfully added');
             } else { 
                 console.log(err);
             }
