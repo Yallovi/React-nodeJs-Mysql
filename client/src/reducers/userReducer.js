@@ -1,13 +1,13 @@
-const UPPDATE_REQ_TEXT = 'UPPDATE_REQ_TEXT';
+// const UPPDATE_REQ_TEXT = 'UPPDATE_REQ_TEXT';
 
 const defaultState = {
-    ReqText: '',
+    name: '',
 };
 
 export default function userReducer(state = defaultState, action) {
     switch(action.type) {
-        case UPPDATE_REQ_TEXT: 
-            return {...state, ReqText: action.newText};
+        // case UPPDATE_REQ_TEXT: 
+        //     return {...state, ReqText: action.newText};
         default:
             return state;
     }
@@ -15,4 +15,6 @@ export default function userReducer(state = defaultState, action) {
 
 // actionCreator 
 
-export const uppdateReqText = (newText) => ({type: UPPDATE_REQ_TEXT, newText});
+// export const uppdateReqText = (newText) => ({type: UPPDATE_REQ_TEXT, newText});
+
+// export  const getReqTextAC = ()

@@ -1,12 +1,14 @@
 import './App.css';
 import React from 'react';
 import Registrathion from './components/registration/Regestration';
+import LessonOne from './components/LessonOne';
 
 
 function App() {
   return (
     <div className="App">
-      <Registrathion />     
+      {/* <Registrathion />   */}
+      <LessonOne />   
     </div>
   );
 }

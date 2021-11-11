@@ -28,10 +28,10 @@ exports.add =(req, res) => {
             connection.release(); // return the connection to  pool
 
             if(!err) {
-
+                // res.send(rows);
                 res.send('User successfully added');
             } else { 
-                console.log(err);
+                res.send('Упс');
             }
             console.log('The data from name table are: \n', rows);
         });
