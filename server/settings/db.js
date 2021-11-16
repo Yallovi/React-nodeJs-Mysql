@@ -1,20 +1,20 @@
-const mysql = require('mysql2');
+const mysql = require('mysql');
+const env = require('./../dbenv');
 
-const pool = mysql.createPool({
-    connectionLimit : 10,
-    host            : 'localhost',
-    user            : 'root',
-    port            : 3307,
-    password        : 'root',
-    database        : 'testnodejs',
+const connection = mysql.createConnection({
+    host            : env.HOST,
+    user            : env.DBUSER,
+    port            : env.PORT,
+    password        : env.DBPASSWORD,
+    database        : env.DBNAME,
 });
 
-pool.getConnection((error) => {
+connection.connect((error) => {
     if(error) {
-        return console.log('Ошибка подключения к БД');
-    }else {
-        return console.log('Подключение успешно');
+        return console.log('Ошибка подключения к БД!');
+    } else {
+        return console.log('Подлючение успешно!');
     }
 });
 
-module.exports = pool;
+module.exports = connection;

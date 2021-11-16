@@ -1,15 +1,26 @@
 import './App.css';
 import React from 'react';
-import Registrathion from './components/registration/Regestration';
+import Navbar from './components/Navbar/Navbar';
 import LessonOne from './components/LessonOne';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import s from './app.module.css';
+import Login from './components/registration/Login';
+import Registration from './components/registration/Regestration';
 
 
 function App() {
   return (
-    <div className="App">
+    <BrowserRouter >
+    <div className={s.app}>
+      <Navbar />
+      <Switch>
+          <Route path="/login" component={Login} />
+          <Route path="/registrahion"  component={Registration} />
+      </Switch>
       {/* <Registrathion />   */}
-      <LessonOne />   
+      {/* <LessonOne />    */}
     </div>
+    </BrowserRouter>
   );
 }
 

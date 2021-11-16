@@ -1,42 +1,58 @@
-const response = require('./../response');
-const pool = require('../settings/db');
+const response = require('../response');
+const db = require('../settings/db');
+const bcrypt = require('bcryptjs');
+
 exports.users = (req, res) => {
-    pool.getConnection((err, connection) =>{
-        if(err) throw err;
-        console.log(`connected as id ${connection.threadId}`);
+    db.query('SELECT `id`, `name`, `last_name`, `email`  FROM `login`', (error, rows, fields) =>{
+        if(error) {
+            response.status(400, error, res);
+        } else {  
+            response.status(200, rows, res);
+        }
+    });
 
-        connection.query('SELECT * FROM users', (err, rows) =>{
-            connection.release(); // return the connection to  pool
-
-            if(!err) {
-                res.send(rows);
-            } else { 
-                console.log(err);
-            }
-            console.log('The data from beer table are: \n', rows);
-        });
-
-    }); 
 };
 
 exports.add =(req, res) => {
-    pool.getConnection((err, connection) =>{
-        if(err) throw err;
-
         const postData = req.body.name;
-        connection.query(`${postData}`, (err, rows) =>{
-            connection.release(); // return the connection to  pool
-
-            if(!err) {
-                // res.send(rows);
-                res.send('User successfully added');
+        db.query(`${postData}`, (error, rows) =>{
+            if(error) {
+                response.status(400, error, res);
+                
             } else { 
-                res.send('Упс');
+                response.status(200, rows, res);
             }
-            console.log('The data from name table are: \n', rows);
         });
-        console.log(req.body);
+};
+exports.signup =(req, res) => {
+        console.log(req.body.email);
 
-    });      
+        db.query("SELECT `id`, `email`, `name` FROM login WHERE `email` = '"+ req.body.email +"'" , (error, rows, fields) =>{
+           if(error){
+               response.status(400, error, res);
+           } else if (typeof rows !== 'undefined' && rows.length > 0){
+               console.log(rows);
+               const row = JSON.parse(JSON.stringify(rows));
+               row.map(rw =>{
+                   response.status(302, {message: ` Пользователь с таки email - ${rw.email} уже существует `}, res);
+                   return true;
+               });
+           }else { 
+               const name = req.body.name;
+               const last_name = req.body.last_name !== '' ? req.body.last_name : 'Не указано';
+               const email = req.body.email;
+               const salt = bcrypt.genSaltSync(15);
+               const password = bcrypt.hashSync(req.body.password, salt);
+
+               const sql = ("INSERT INTO `login` (`name`, `last_name`, `email`, `password`)  VALUES('"+ name +"', '"+ last_name +"', '"+ email +"','"+ password +"')");
+               db.query(sql, (error, results) => {
+                if(error){
+                    response.status(400, error, res);
+                } else {
+                    response.status(200, {message: `Регистрация прошла успешно`, results}, res);
+                }
+               });
+           }
+        });
 };
 // const sql = "INSERT INTO `users`(`name`) VALUES('"+ postData +"')";
