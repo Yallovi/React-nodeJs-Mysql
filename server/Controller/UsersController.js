@@ -1,6 +1,8 @@
 const response = require('../response');
 const db = require('../settings/db');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const config = require('../config');    
 
 exports.users = (req, res) => {
     db.query('SELECT `id`, `name`, `last_name`, `email`  FROM `login`', (error, rows, fields) =>{
@@ -25,13 +27,11 @@ exports.add =(req, res) => {
         });
 };
 exports.signup =(req, res) => {
-        console.log(req.body.email);
 
         db.query("SELECT `id`, `email`, `name` FROM login WHERE `email` = '"+ req.body.email +"'" , (error, rows, fields) =>{
            if(error){
                response.status(400, error, res);
            } else if (typeof rows !== 'undefined' && rows.length > 0){
-               console.log(rows);
                const row = JSON.parse(JSON.stringify(rows));
                row.map(rw =>{
                    response.status(302, {message: ` Пользователь с таки email - ${rw.email} уже существует `}, res);
@@ -55,4 +55,32 @@ exports.signup =(req, res) => {
            }
         });
 };
-// const sql = "INSERT INTO `users`(`name`) VALUES('"+ postData +"')";
+
+exports.signin = (req, res) => {
+    db.query("SELECT `id`, `email`, `password` FROM `login` WHERE `email` = '"+ req.body.email +"'", (error, rows, fields) => {
+        if(error){
+            response.status(400, error, res);
+        } else if(rows.length <= 0){
+            response.status(404 , `Пользователь с email - ${body.req.email} не найден. Зарегистрируйтесь.`, res);
+        } else {
+            const row = JSON.parse(JSON.stringify(rows));
+            row.map(rw =>{
+                const password = bcrypt.compareSync(req.body.password, rw.password);
+                if(password){
+                    // Если true, тогда пускаем пользователя и генерируем token.
+                    const token = jwt.sign({
+                        userId: rw.id,
+                        email: rw.email
+                    }, config.jwt, {expiresIn: 120 * 120});
+
+                    response.status(200, {token: token, user:{id:rw.id, email: rw.email}}, res);
+                }else {
+                    // Показываем ошибку , что пароль неверный.
+                    response.status(401, {message: `Пароль неверный.`}, res);
+                }
+                return true;
+            });
+            
+        };
+    });
+};

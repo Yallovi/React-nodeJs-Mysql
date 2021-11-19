@@ -1,12 +1,12 @@
 const mysql = require('mysql');
-const env = require('./../dbenv');
+const config = require('../config');
 
 const connection = mysql.createConnection({
-    host            : env.HOST,
-    user            : env.DBUSER,
-    port            : env.PORT,
-    password        : env.DBPASSWORD,
-    database        : env.DBNAME,
+    host            : config.HOST,
+    user            : config.DBUSER,
+    port            : config.PORT,
+    password        : config.DBPASSWORD,
+    database        : config.DBNAME,
 });
 
 connection.connect((error) => {
@@ -18,4 +18,3 @@ connection.connect((error) => {
 });
 
 module.exports = connection;
-

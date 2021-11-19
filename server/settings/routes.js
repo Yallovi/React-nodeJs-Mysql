@@ -1,5 +1,5 @@
 module.exports = (app) => {
-    const indexController = require('./../Controller/IndexController');
+    // const indexController = require('./../Controller/IndexController');
     const usersController = require('./../Controller/UsersController');
 
     // app.route('/').get(indexController.index);
@@ -12,7 +12,9 @@ module.exports = (app) => {
     app
         .route('/api/auth/signup')
         .post(usersController.signup);
-
+    app
+        .route('/api/auth/signin')
+        .post(usersController.signin);
 
 
 

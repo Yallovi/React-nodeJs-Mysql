@@ -1,20 +1,30 @@
-// const UPPDATE_REQ_TEXT = 'UPPDATE_REQ_TEXT';
+const SET_USER = 'SET_USER';
+// const LOGOUT = 'LOGOUT';
 
 const defaultState = {
-    name: '',
+    currentUser: {},
+    isAuth: false,
 };
 
 export default function userReducer(state = defaultState, action) {
     switch(action.type) {
-        // case UPPDATE_REQ_TEXT: 
-        //     return {...state, ReqText: action.newText};
+        case SET_USER:
+            return {
+                ...state,
+                currentUser: action.payload,
+                isAuth: true,
+            };
+        // case LOGOUT:
+        //     localStorage.removeItem('token');
+        //     return {
+        //         ...state, 
+        //         currentUser: {},
+        //         isAuth: false,
+        //     };
         default:
             return state;
     }
-};
+}
 
-// actionCreator 
-
-// export const uppdateReqText = (newText) => ({type: UPPDATE_REQ_TEXT, newText});
-
-// export  const getReqTextAC = ()
+export const setUser = user => ({type: SET_USER, payload: user});
+// export const logout = () => ({type: LOGOUT});
