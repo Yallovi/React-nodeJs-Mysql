@@ -1,7 +1,6 @@
 import './App.css';
 import React from 'react';
 import Navbar from './components/Navbar/Navbar';
-import LessonOne from './components/LessonOne';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import s from './app.module.css';
 import Login from './components/registration/Login';
@@ -10,7 +9,7 @@ import {useSelector} from 'react-redux';
 
 
 function App() {
-  const isAuth = useSelector(state => state.user.isAuth);
+  const isAuth = useSelector(state => state.authReducer.isAuth);
 
   return (
     <BrowserRouter >
@@ -22,8 +21,6 @@ function App() {
           <Route path="/registrahion"  component={Registration} />
         </Switch>
       }
-      {/* <Registrathion />   */}
-      {/* <LessonOne />    */}
     </div>
     </BrowserRouter>
   );

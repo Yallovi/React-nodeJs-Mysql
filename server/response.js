@@ -1,11 +1,11 @@
 exports.status = (status, values, res) => {
 
     const data = {
-        "satus": status,
+        "status": status,
         "values": values
     };
 
-    res.status(data.satus);
+    res.status(data.status);
     res.json(data);
     res.end();
 

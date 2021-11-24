@@ -14,7 +14,9 @@
     font-weight: 700;
   }
   .authorization input {
-    margin: 10px 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
   }
   .authorization__btn {
     border: none;

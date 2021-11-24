@@ -1,0 +1,47 @@
+input {
+border: none;
+border-bottom: #566885 solid 3px;
+background: transparent;
+width: 100%;
+padding: 3px;
+}
+input:focus {
+outline: none;
+transform: scale(1.01);
+}
+::-webkit-input-placeholder {
+/* Chrome */
+color: #566885;
+font-weight: 700;
+}
+:-ms-input-placeholder {
+/* IE 10+ */
+color: #566885;
+font-weight: 700;
+}
+::-moz-placeholder {
+/* Firefox 19+ */
+color: #566885;
+font-weight: 700;
+}
+:-moz-placeholder {
+/* Firefox 4 - 18 */
+color: #566885;
+font-weight: 700;
+}
+
+.formControl{
+    width: 100%;
+};
+.formControl.error input,
+.formControl.error textarea{
+    border: solid red 2px;
+}
+
+.formControl.error span{
+    color: red;
+}
+.formSummaryError{
+    border: solid red 1px;
+    color: red;
+}

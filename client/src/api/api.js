@@ -1,6 +1,10 @@
 import axios from "axios";
 import {setUser} from "../reducers/userReducer";
 
+const instance = axios.create({
+    baseURL: 'http://localhost:5000/api/',
+});
+
 export const reqApi = async(name) => {
     debugger;
     try {
@@ -41,4 +45,21 @@ export const authorizationApi  = (email, password) => {
             console.log(error);
         }
     };
+};
+export const authApi = {
+    login(email,password){
+        return instance.post(`auth/signin`, {email,password})
+        .then(response =>{
+            return response.data; 
+        });
+        
+    },
+    registration(name, last_name, email, password){
+        debugger;
+        return instance.post(`auth/signup`, {name,last_name,email,password})
+        .then(response =>{
+            return response.data;
+        });
+    }
+
 };

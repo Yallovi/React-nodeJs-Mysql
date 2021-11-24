@@ -2,7 +2,11 @@ const response = require('../response');
 const db = require('../settings/db');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const config = require('../config');    
+const config = require('../config');   
+
+setInterval(function () {
+    db.query('SELECT 1');
+}, 5000);
 
 exports.users = (req, res) => {
     db.query('SELECT `id`, `name`, `last_name`, `email`  FROM `login`', (error, rows, fields) =>{
