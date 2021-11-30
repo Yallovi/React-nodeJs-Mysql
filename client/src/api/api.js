@@ -64,4 +64,18 @@ export const authApi = {
     }
 
 };
-
+export const authentication  = () => {
+    return async dispatch =>{
+        try{
+            const response = await instance.get(`auth/authentication`, 
+            {headers:{Authorization:`Bearer ${localStorage.getItem('token')}`}}
+            );
+            const user = response.data.values.user;
+            dispatch(setUser(user));
+            localStorage.setItem('token', response.data.values.token);
+        }catch(error) {
+            console.log(error);
+            localStorage.removeItem('token');
+        }
+    };
+};

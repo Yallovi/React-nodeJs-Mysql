@@ -1,4 +1,5 @@
 module.exports = (app) => {
+    const authMiddleware = require('../middleware/auth.middleware');
     const passport = require('passport');
     const usersController = require('./../Controller/UsersController');
 
@@ -15,5 +16,7 @@ module.exports = (app) => {
     app
         .route('/api/auth/signin')
         .post(usersController.signin);
-
+    app
+    .route('/api/auth/authentication')
+    .get(authMiddleware ,usersController.authentication);
 };

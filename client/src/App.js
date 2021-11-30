@@ -6,15 +6,16 @@ import s from './app.module.css';
 import Login from './components/registration/Login';
 import Registration from './components/registration/Regestration';
 import {useSelector, useDispatch} from 'react-redux';
+import {authentication} from './api/api';
 
 
 function App() {
   const isAuth = useSelector(state => state.authReducer.isAuth);
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(authToken())
-  // }, );
+  useEffect(() => {
+    dispatch(authentication())
+  }, []);
 
 
 

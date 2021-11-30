@@ -3,6 +3,7 @@ const db = require('../settings/db');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('../config');
+const authMiddleware = require('../middleware/auth.middleware');
 
 
 setInterval(function () {
@@ -76,10 +77,9 @@ exports.signin = (req, res) => {
                     const token = jwt.sign({
                         userId: rw.id,
                         email: rw.email
-                    }, config.jwt, {expiresIn: 120 * 120});
-                    
+                    }, config.jwt, {expiresIn: "1h"});
 
-                    response.status(200,  {token: `Bearer ${token}`}, res);
+                    response.status(200,  {user:{userId: rw.id,email: rw.email}, token: token}, res);
                 }else {
                     // Показываем ошибку , что пароль неверный.
                     response.status(401, {message: `Пароль неверный.`}, res);
@@ -91,31 +91,22 @@ exports.signin = (req, res) => {
     });
 };
 
-// router.post('/signin',
-//     async (req,res) => {
-//     try {
-//         const {email,password} = req.body;
-//         const user = await User.findOne({email});
-//         if(!user){
-//             return res.status(404).json({message: 'User not found'});
-//         }
-//         const isPassValid = bcrypt.compareSync(password, user.password);
-//         if(!isPassValid){
-//             return res.status(400).json({message: 'Invalid password'});
-//         }
-//         const token = jwt.sign({id: user.id}, config.get("secretKey"), {expiresIn: "1h"});
-//         return res.json({
-//             token,
-//             user: {
-//                 id: user.id,
-//                 email: user.email,
-//                 diskSpace: user.diskSpace,
-//                 usedSpace: user.usedSpace,
-//                 avater: user.avater,
-//             }
-//         })
-//     }catch(e){
-//         console.log(e);
-//         res.send({message: 'Server error'});
-//     }
-// });
+exports.authentication = (req, res) => {
+    try{
+        db.query("SELECT `id`, `email` FROM `login` WHERE `id` = '"+ req.user.userId +"'", (error, rows, fields) => {
+        const row = JSON.parse(JSON.stringify(rows));
+        row.map(rw =>{
+            const token = jwt.sign({
+                userId: rw.id,
+                email: rw.email
+            }, config.jwt, {expiresIn: "1h"});
+            response.status(200,  {user:{userId: rw.id,email: rw.email}, token: token}, res);
+            });
+        });
+
+    }catch(error){
+        console.log(error);
+        res.send({message: "server error"});
+    }
+};
+

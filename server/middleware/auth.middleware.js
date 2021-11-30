@@ -11,8 +11,9 @@ module.exports = (req, res, next) => {
         if (!token) {
             return res.status(401).json({message: 'Auth error'});
         }
-        const decoded = jwt.verify(token, config.get('jwt'));
+        const decoded = jwt.verify(token, config.jwt);
         req.user = decoded;
+        console.log('req.user: ', req.user);
         next()
     } catch (e) {
         return res.status(401).json({message: 'Auth error'});
