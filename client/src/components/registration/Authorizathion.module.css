@@ -28,3 +28,14 @@
     align-self: flex-end;
     margin-top: 10px;
   }
+.formControl.error span{
+    color: red;
+}
+.formSummaryError{
+    border: solid red 1px;
+    color: red;
+}
+.formSuccess{
+  border: solid green 1px;
+  color: green;
+}

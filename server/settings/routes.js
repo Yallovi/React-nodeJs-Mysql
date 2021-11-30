@@ -1,11 +1,11 @@
 module.exports = (app) => {
-    // const indexController = require('./../Controller/IndexController');
+    const passport = require('passport');
     const usersController = require('./../Controller/UsersController');
 
     // app.route('/').get(indexController.index);
     app
         .route('/api/users')
-        .get(usersController.users);
+        .get(passport.authenticate('jwt', { session: false }), usersController.users);
     app
         .route('/api/users/add')
         .post(usersController.add);
@@ -15,7 +15,5 @@ module.exports = (app) => {
     app
         .route('/api/auth/signin')
         .post(usersController.signin);
-
-
 
 };

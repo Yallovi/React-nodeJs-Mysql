@@ -17,7 +17,7 @@ const Navbar = () => {
                 <img className={s.navbar__logo} src={logo} alt="Logo" />
                { !isAuth &&<div className={s.navbar__login}> <NavLink to="/login">Войти</NavLink> </div>}
                 {!isAuth &&<div className={s.navbar__registrathion}><NavLink to='/registrahion'>Регистрация</NavLink></div>}
-                {isAuth &&<div  className={s.navbar__login} onClick={()=>dispatch(logout())}><NavLink to=''>Выход </NavLink> </div>}
+                {isAuth &&<div  className={s.navbar__login} onClick={()=>dispatch(logout())}>Выход</div>}
 
             </div>
         </div>

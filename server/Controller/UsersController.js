@@ -2,7 +2,8 @@ const response = require('../response');
 const db = require('../settings/db');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const config = require('../config');   
+const config = require('../config');
+
 
 setInterval(function () {
     db.query('SELECT 1');
@@ -65,7 +66,7 @@ exports.signin = (req, res) => {
         if(error){
             response.status(400, error, res);
         } else if(rows.length <= 0){
-            response.status(404 , `Пользователь с email - ${body.req.email} не найден. Зарегистрируйтесь.`, res);
+            response.status(404 ,  {message: `Пользователь с email - ${req.body.email} не найден. Зарегистрируйтесь.`}, res);
         } else {
             const row = JSON.parse(JSON.stringify(rows));
             row.map(rw =>{
@@ -76,8 +77,9 @@ exports.signin = (req, res) => {
                         userId: rw.id,
                         email: rw.email
                     }, config.jwt, {expiresIn: 120 * 120});
+                    
 
-                    response.status(200, {token: token, user:{id:rw.id, email: rw.email}}, res);
+                    response.status(200,  {token: `Bearer ${token}`}, res);
                 }else {
                     // Показываем ошибку , что пароль неверный.
                     response.status(401, {message: `Пароль неверный.`}, res);
@@ -88,3 +90,32 @@ exports.signin = (req, res) => {
         };
     });
 };
+
+// router.post('/signin',
+//     async (req,res) => {
+//     try {
+//         const {email,password} = req.body;
+//         const user = await User.findOne({email});
+//         if(!user){
+//             return res.status(404).json({message: 'User not found'});
+//         }
+//         const isPassValid = bcrypt.compareSync(password, user.password);
+//         if(!isPassValid){
+//             return res.status(400).json({message: 'Invalid password'});
+//         }
+//         const token = jwt.sign({id: user.id}, config.get("secretKey"), {expiresIn: "1h"});
+//         return res.json({
+//             token,
+//             user: {
+//                 id: user.id,
+//                 email: user.email,
+//                 diskSpace: user.diskSpace,
+//                 usedSpace: user.usedSpace,
+//                 avater: user.avater,
+//             }
+//         })
+//     }catch(e){
+//         console.log(e);
+//         res.send({message: 'Server error'});
+//     }
+// });

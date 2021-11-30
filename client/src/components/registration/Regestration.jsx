@@ -1,44 +1,34 @@
-import {React,  useState}  from 'react';
-// import { Input } from '../utils/Input';
+import React  from 'react';
 import { Input } from '../../common/FormsControll/FormsControls';
 import s from './Authorizathion.module.css';
-// import {registrathionApi} from '../../api/api';
 import { Field, reduxForm } from 'redux-form'
-import { maxLengthCreater,required } from '../utils/validators/validators';
+import { emailValid, maxLengthCreater,passwordValid,required } from '../utils/validators/validators';
 import { connect } from 'react-redux';
 import {signup} from '../../reducers/authReducer';
+import {useSelector} from 'react-redux';
+
 
 
 const  maxLength50 = maxLengthCreater(30);
 
 const RegistrationForm = (props) => {
-
-    // const [name, setName] = useState('');
-    // const [last_name, setLastName] = useState('');
-    // const [email, setEmail] = useState('');
-    // const [password, setPassword] = useState('');
-
-
-
-    // return (
-    //     <div className={s.authorization}>
-    //         <div className={s.authorization__header}>Регистрация</div>
-    //             <Input value={name} setValue={setName} type="text" placeholder="Имя" />
-    //             <Input value={last_name} setValue={setLastName} type="text" placeholder="Фамилия"/>
-    //             <Input value={email} setValue={setEmail} type="text" placeholder="Email"/>
-    //             <Input value={password} setValue={setPassword} type="password" placeholder="Password"/>
-    //             <button className={s.authorization__btn} onClick= {() => registrathionApi(name,last_name, email, password )}   >Отправить</button>
-    //     </div>
-    // );
-
+    const successMessage = useSelector(state => state.authReducer.successMessage);
     return(
         <form onSubmit = {props.handleSubmit}>
             <div className={s.authorization}>
                 <div className={s.authorization__header}>Регистрация</div>
                 <Field name = "name" component ={Input} validate={[required, maxLength50]} type="text" placeholder="Имя" />
                 <Field name = "last_name" component ={Input} validate={[required, maxLength50]} type="text" placeholder="Фамилия"/>
-                <Field name = "email" component ={Input} validate={[required, maxLength50]} type="text" placeholder="Email"/>
-                <Field name = "password" component ={Input} validate={[required, maxLength50]} type="password" placeholder="Password"/>
+                <Field name = "email" component ={Input} validate={[required, maxLength50, emailValid]} type="text" placeholder="Email"/>
+                <Field name = "password" component ={Input} validate={[required, passwordValid]} type="password" placeholder="Password"/>
+                {
+                props.error && <div className = {s.formSummaryError}>
+                    {props.error}
+                </div>
+                }
+                { successMessage  &&
+                    <div className = {s.formSuccess}> {successMessage} </div>
+                }
                 <button className={s.authorization__btn} >Отправить</button>
             </div>
         </form>
@@ -60,5 +50,7 @@ const Registration = (props) =>{
         </div>
     );
 };
+
+
 
 export default connect(null, { signup})(Registration);
