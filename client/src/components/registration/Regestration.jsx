@@ -6,13 +6,15 @@ import { emailValid, maxLengthCreater,passwordValid,required } from '../utils/va
 import { connect } from 'react-redux';
 import {signup} from '../../reducers/authReducer';
 import {useSelector} from 'react-redux';
-
+import Preloader from '../preloader/Preloader';
 
 
 const  maxLength50 = maxLengthCreater(30);
 
 const RegistrationForm = (props) => {
     const successMessage = useSelector(state => state.authReducer.successMessage);
+    const isFetching = useSelector(state => state.authReducer.isFetching);  
+
     return(
         <form onSubmit = {props.handleSubmit}>
             <div className={s.authorization}>
@@ -30,6 +32,7 @@ const RegistrationForm = (props) => {
                     <div className = {s.formSuccess}> {successMessage} </div>
                 }
                 <button className={s.authorization__btn} >Отправить</button>
+                {isFetching ? <Preloader/> : null }
             </div>
         </form>
     );

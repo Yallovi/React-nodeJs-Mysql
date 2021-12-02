@@ -1,31 +1,23 @@
-import React, {useState} from 'react';
+import React from 'react';
 import s from './Authorizathion.module.css';
 import { Input } from '../../common/FormsControll/FormsControls';
 import {required , maxLengthCreater, emailValid} from '../utils/validators/validators';
 import { Field, reduxForm } from 'redux-form';
 import {connect} from 'react-redux';
 import {login} from '../../reducers/authReducer';
+import {useSelector} from 'react-redux';
+import Preloader from '../preloader/Preloader';
 // import { Input } from '../utils/Input';
 // import {useDispatch} from 'react-redux';
 // import { authorizationApi } from '../../api/api';
+
 
 const maxLength50 = maxLengthCreater(50);
 
 const LoginForm = (props) => {
 
-    // const [email, setEmail] = useState('');
-    // const [password, setPassword] = useState('');
+const isFetching = useSelector(state => state.authReducer.isFetching);  
 
-    // const dispatch = useDispatch();
-
-    // return (
-    //     <div className={s.authorization}>
-    //         <div className={s.authorization__header}>Авторизация</div>
-    //         <Input value={email} setValue ={setEmail} type="text" placeholder='Введите email' />
-    //         <Input value={password} setValue = {setPassword} type="password" placeholder='Введите пароль' />
-    //         <button className={s.authorization__btn} onClick={()=> dispatch(authorizationApi(email,password))} >Войти</button>
-    //     </div>
-    // );
     return( 
         <form onSubmit={props.handleSubmit}>
             <div className={s.authorization}>
@@ -38,9 +30,9 @@ const LoginForm = (props) => {
                 </div>
                 }
                 <button className={s.authorization__btn}>Войти</button>
+                {isFetching ? <Preloader/> : null }
             </div>
         </form>
-        
     );
 };
 

@@ -45,6 +45,7 @@ export const reqApi = async(name) => {
 //         }
 //     };
 // };
+
 export const authApi = {
     login(email,password){
         return instance.post(`auth/signin`, {email,password})
