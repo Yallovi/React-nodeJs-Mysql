@@ -14,7 +14,9 @@ const Navbar = () => {
 
         <div className={s.navbar}>
             <div className={s.container}>
-                <img className={s.navbar__logo} src={logo} alt="Logo" />
+                <NavLink to="/" ><img className={s.navbar__logo} src={logo} alt="Logo" /></NavLink>
+                {isAuth &&<div className={s.navbar__tasks}> <NavLink to="/manual">Учебник</NavLink> </div>}
+                {isAuth &&<div className={s.navbar__tasks}> <NavLink to="/task">Тренажер</NavLink> </div>}
                { !isAuth &&<div className={s.navbar__login}> <NavLink to="/login">Войти</NavLink> </div>}
                 {!isAuth &&<div className={s.navbar__registrathion}><NavLink to='/registrahion'>Регистрация</NavLink></div>}
                 {isAuth &&<div  className={s.navbar__login} onClick={()=>dispatch(logout())}>Выход</div>}
@@ -25,3 +27,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+

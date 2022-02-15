@@ -6,7 +6,7 @@ import { emailValid, maxLengthCreater,passwordValid,required } from '../utils/va
 import { connect } from 'react-redux';
 import {signup} from '../../reducers/authReducer';
 import {useSelector} from 'react-redux';
-import Preloader from '../preloader/Preloader';
+import CircularStatic from '../preloader/Preloader';
 
 
 const  maxLength50 = maxLengthCreater(30);
@@ -16,7 +16,8 @@ const RegistrationForm = (props) => {
     const isFetching = useSelector(state => state.authReducer.isFetching);  
 
     return(
-        <form onSubmit = {props.handleSubmit}>
+        <div className={s.container}>
+            <form onSubmit = {props.handleSubmit}>
             <div className={s.authorization}>
                 <div className={s.authorization__header}>Регистрация</div>
                 <Field name = "name" component ={Input} validate={[required, maxLength50]} type="text" placeholder="Имя" />
@@ -32,9 +33,10 @@ const RegistrationForm = (props) => {
                     <div className = {s.formSuccess}> {successMessage} </div>
                 }
                 <button className={s.authorization__btn} >Отправить</button>
-                {isFetching ? <Preloader/> : null }
+                {isFetching ? <CircularStatic/> : null }
             </div>
         </form>
+        </div>
     );
 };
 
@@ -42,10 +44,8 @@ const RegistrationReduxForm = reduxForm({form: "registration"})(RegistrationForm
 
 const Registration = (props) =>{
     const onSubmit = (formData) => {
-        // console.log('formData: ', formData);
         props.signup(formData.name,formData.last_name,formData.email, formData.password);
-
-    }
+    };
 
     return(
         <div>

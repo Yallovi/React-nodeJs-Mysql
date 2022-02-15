@@ -22,10 +22,11 @@ exports.users = (req, res) => {
 };
 
 exports.add =(req, res) => {
-        const postData = req.body.name;
+        const postData = req.body.task; 
+        console.log('postData: ', postData);
         db.query(`${postData}`, (error, rows) =>{
             if(error) {
-                response.status(400, error, res);
+                response.status(404, error, res);
                 
             } else { 
                 response.status(200, rows, res);
@@ -36,7 +37,7 @@ exports.signup =(req, res) => {
 
         db.query("SELECT `id`, `email`, `name` FROM login WHERE `email` = '"+ req.body.email +"'" , (error, rows, fields) =>{
            if(error){
-               response.status(400, error, res);
+               response.status(400, { message: 'server not found'}, error, res);
            } else if (typeof rows !== 'undefined' && rows.length > 0){
                const row = JSON.parse(JSON.stringify(rows));
                row.map(rw =>{

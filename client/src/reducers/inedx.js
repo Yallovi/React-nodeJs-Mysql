@@ -4,6 +4,8 @@ import thunk from 'redux-thunk';
 import userReducer from "./userReducer";
 import authReducer from "./authReducer";
 import { reducer as formReducer } from 'redux-form';
+import taskReduxForm from "./taskReducer";
+import manualReducer from "./manualReducer";
 
 
 
@@ -11,6 +13,8 @@ const rootReducer = combineReducers({
     user: userReducer,
     form: formReducer,
     authReducer: authReducer,
+    taskReducer: taskReduxForm,
+    manualReducer: manualReducer,
 });
 
 

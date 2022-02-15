@@ -1,0 +1,111 @@
+.container{
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    
+}
+.container__title{
+    max-width: 1020px;
+    box-sizing: border-box;
+    text-align: left;
+    margin: 0px auto;
+    color: #fff;
+    font-size: 1.4em;
+    font-family: "font700", "Arial";
+    text-shadow: 1px 0px 1px #333;
+}
+.container__title h1{
+    display: block;
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    color: #000
+}
+.block_navigation{
+    background-color: #fff;
+    max-width: 920px;
+    margin-top: 50px;
+    border-radius: 7px;
+
+}
+.section{
+    padding: 20px;
+}
+.section__title{
+    color: #ff4c4c;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+.description{
+    font-size: 1.1em;
+    line-height: 1.7em;
+    padding-bottom: 15px;
+}
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    color: #333;
+}
+span{
+    font-size: 1.25em;
+    font-family: "font500", "Arial";
+    font-weight: 700;
+    color: #ff4c4c;
+}
+.items{
+    margin: 20px 10px 0px 0px;
+    padding-bottom: 10px;
+    columns: 2;
+}
+.item{
+    display: flex;
+    transition: 0.2s ease;
+    line-height: 2;
+    margin-right: 30px;
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
+.item .number{
+    color: #333;
+    font-size: 0.87em;
+    padding-right: 10px;
+    line-height: 2;
+    margin-top: 4px;
+}
+.item__title{
+    flex-grow: 1;
+    /* Для ссылки */
+    cursor: pointer;
+    font-size: 1.11em;
+    text-decoration: none;
+}
+.item__title a{
+    position: relative;
+    color: #1357d2;
+    cursor: pointer;
+    text-decoration: none;
+
+}
+.item__title a:after {
+	display: block;
+	position: absolute;
+	left: 0; /*изменить на right:0;, чтобы изменить направление подчёркивания */
+	width: 0;/*задаём длинну линии до наведения курсора*/
+	height: 2px; /*задаём ширину линии*/
+	background-color: #1357d2; /*задаём цвет линии*/
+	content: "";
+	transition: width 0.3s ease-out; /*задаём время анимации*/
+}
+.item__title 
+a:hover:after,
+a:focus:after {
+	width: 100%; /*устанавливаем значение 100% чтобы ссылка подчёркивалась полностью*/
+}
+
+/* ManualChapter стили */

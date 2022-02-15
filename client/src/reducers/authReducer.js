@@ -59,7 +59,7 @@ export const login = (email, password) => async (dispatch) => {
         } 
     } catch (e) {    
             // console.log(e?.response.data);
-            dispatch(stopSubmit("login", {_error: e?.response.data.values.message})); 
+            dispatch(stopSubmit("login", {_error: e.response.data.values.message})); 
     }
     
 };

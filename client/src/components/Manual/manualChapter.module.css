@@ -1,0 +1,95 @@
+.container{
+    display: flex;
+    /* flex-direction: column;  */
+    align-items: center;
+    justify-content: space-evenly;
+    
+}
+.content{
+    width: 1200px;
+    background: #fff;
+    padding: 30px 50px;
+    border-radius: 7px;
+    box-sizing: border-box;
+    box-shadow: 0 4px 4px rgb(33 33 33 / 10%);
+    font-size: 1.1em;
+    color: #333;
+    line-height: 1.6em;
+    /* width: 100%; */
+}
+.container__title h1{
+    text-align: center;
+    display: block;
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    color: #000 
+}
+
+.navigation{
+    background: #fff;
+    padding: 30px 50px;
+    border-radius: 7px;
+    box-sizing: border-box;
+    box-shadow: 0 4px 4px rgb(33 33 33 / 10%);
+    font-size: 1.1em;
+    color: #333;
+    line-height: 1.6em;
+}
+.navigation__title{
+    margin-bottom: 15px;
+}
+.label{
+    margin-bottom: 10px;
+}
+.item{
+    margin-bottom: 10px;
+    display: flex;
+    transition: 0.2s ease;
+    line-height: 2;
+    margin-right: 30px;
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
+.chapter__title{
+    font-size: 1em;
+    font-family: "font500", "Arial";
+    font-weight: 700;
+    color: red;
+}
+.number, .itemTitle{
+    font-size: 1em;
+    color: #333;
+    text-decoration: none;
+
+}
+.item__title{
+    flex-grow: 1;
+    /* Для ссылки */
+    cursor: pointer;
+    font-size: 1.11em;
+    text-decoration: none;
+}
+.item__title a{
+    position: relative;
+}
+.itemTitle a:after {
+	display: block;
+	/* position: absolute; */
+	/* left: 0; изменить на right:0;, чтобы изменить направление подчёркивания */
+	width: 0;/*задаём длинну линии до наведения курсора*/
+	height: 2px; /*задаём ширину линии*/
+	background-color: #1357d2; /*задаём цвет линии*/
+	content: "";
+	transition: width 0.3s ease-out; /*задаём время анимации*/
+}
+.itemTitle 
+a:hover:after,
+a:focus:after {
+    width: 100%; /*устанавливаем значение 100% чтобы ссылка подчёркивалась полностью*/
+}
+
+

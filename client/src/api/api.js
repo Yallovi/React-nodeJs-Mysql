@@ -5,46 +5,16 @@ const instance = axios.create({
     baseURL: 'http://localhost:5000/api/',
 });
 
-export const reqApi = async(name) => {
-    try {
-        const response = await axios.post(`http://localhost:5000/api/users/add`, {name});
-        alert(response.data);
-        
-    } catch (error) {
-        alert(error);
-    }
+export const reqApi = async(task) => {
+    return await axios.post(`http://localhost:5000/api/users/add`, {task})
+    .then(response =>{
+        return response
+    }) 
+    .catch(e => {
+        console.log(e.response);
+        return e.response
+    })
 };
-
-// export const registrathionApi  = async(name, last_name, email, password) => {
-//     try{
-//         const response = await axios.post(`http://localhost:5000/api/auth/signup`, {
-//             name, 
-//             last_name,
-//             email, 
-//             password
-            
-//         });
-//         console.log(response.data);
-//     }catch(error) {
-//         console.log(error);
-//     }
-// };
-
-// export const authorizationApi  = (email, password) => {
-
-//     return async dispatch =>{
-//         try{
-//             const response = await axios.post(`http://localhost:5000/api/auth/signin`, {
-//                 email, 
-//                 password
-//             });
-//             dispatch(setUser(response.data.values.user));
-//             localStorage.setItem('token', response.data.values.token);
-//         }catch(error) {
-//             console.log(error);
-//         }
-//     };
-// };
 
 export const authApi = {
     login(email,password){
@@ -80,3 +50,5 @@ export const authentication  = () => {
         }
     };
 };
+
+

@@ -7,6 +7,10 @@ import Login from './components/registration/Login';
 import Registration from './components/registration/Regestration';
 import {useSelector, useDispatch} from 'react-redux';
 import {authentication} from './api/api';
+import Task from './components/task/Task';
+import Tasks from './components/task/TaskForm';
+import Manual from './components/Manual/Manual';
+import ManualChapter from './components/Manual/ManualChapter';
 
 
 function App() {
@@ -23,6 +27,10 @@ function App() {
     <BrowserRouter >
     <div className={s.app}>
       <Navbar />
+      <Route path="/task" component={Task} />
+      <Route path="/manual" component={Manual} />
+      <Route path="/taskForm" component={Tasks} />
+      <Route path="/manualChapter" component={ManualChapter} />
       {!isAuth &&
         <Switch>
           <Route path="/login" component={Login} />
