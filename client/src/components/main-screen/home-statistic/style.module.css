@@ -1,0 +1,45 @@
+.home__statisck{
+    padding: 100px 40px 120px;
+    color: #ffff;
+    position: relative;
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%);
+    margin-top: 90px;
+}
+.home__statisck:before{
+    content: "";
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    height: 100%;
+    width: 100%;
+    filter: brightness(0.25);
+    background-image: url(https://sql-academy.org/static/index/background.jpg);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -1;
+}
+.wrapper{
+    display: flex;
+    margin: 0px auto;
+    max-width: 700px;
+    justify-content: space-around;
+    z-index: 10;
+}
+.statisck__item_1, .statisck__item_2{
+    text-align: center;
+    
+}
+.number{
+    font-family: "font700", "Arial";
+    font-size: 2.6em;
+    padding: 15px 0px 5px;
+    color: #ffff;
+
+}
+.description{
+    font-size: 1.3em;
+    color: #ffff;
+
+}

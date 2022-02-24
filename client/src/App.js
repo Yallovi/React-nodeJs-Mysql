@@ -11,6 +11,8 @@ import Task from './components/task/Task';
 import Tasks from './components/task/TaskForm';
 import Manual from './components/Manual/Manual';
 import ManualChapter from './components/Manual/ManualChapter';
+import MainScreen from './components/main-screen/MainScreen';
+
 
 
 function App() {
@@ -26,7 +28,9 @@ function App() {
   return (
     <BrowserRouter >
     <div className={s.app}>
+
       <Navbar />
+      <Route path="/home" component={MainScreen} />
       <Route path="/task" component={Task} />
       <Route path="/manual" component={Manual} />
       <Route path="/taskForm" component={Tasks} />

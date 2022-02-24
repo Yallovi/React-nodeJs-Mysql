@@ -1,0 +1,22 @@
+.container{
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    box-sizing: border-box;
+    z-index: 1;
+    margin-top: 100px;
+}
+.container h2{
+    /* margin-bottom: 50px; */
+}
+.content{
+    display: flex;
+    text-align: left;
+    justify-content: space-between;
+}
+.description{
+    padding-top: 50px;
+    width: 600px;
+    font-size: 20px;
+    line-height: 28px;
+}

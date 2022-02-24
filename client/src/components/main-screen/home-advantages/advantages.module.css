@@ -1,0 +1,20 @@
+.container{
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    box-sizing: border-box;
+    z-index: 1;
+    margin-top: 100px;
+}
+
+.wrapper{
+    border: 1px solid #4BD0A0
+}
+.description{
+    padding: 50px;
+    color: #000000;
+}
+.description h2{
+    font-size: 36px;
+    line-height: 42px;
+}
