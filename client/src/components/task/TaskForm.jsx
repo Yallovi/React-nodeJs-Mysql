@@ -29,7 +29,7 @@ const TaskForm = (props) => {
         <div>
         <div className={s.containerBlock}>
             <div className={s.taskBlock}>
-                <h3>Задание {props.id}</h3>
+                <h3 className={s.taskBlock__title}>Задание {props.id}</h3>
                 <div className={s.taskInfo}>
                     <p>{props.title}</p>   
                 </div> 

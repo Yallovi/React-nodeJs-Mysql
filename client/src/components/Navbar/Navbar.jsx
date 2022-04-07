@@ -7,12 +7,15 @@ import {useDispatch} from 'react-redux';
 import { logout } from '../../reducers/authReducer';
 import Modal from '../modal-window/Modal';
 import Login from '../registration/Login';
+import Regestration from '../registration/Regestration';
+
  
 const Navbar = () => {
     const isAuth = useSelector(state => state.authReducer.isAuth);
     const dispatch = useDispatch();
 
     const [activeModal, setActiveModal] = useState(false)
+    const [nameButton, setNameButton] = useState('')
 
     return(
 
@@ -21,14 +24,30 @@ const Navbar = () => {
                 <NavLink to="/home" ><img className={s.navbar__logo} src={logo} alt="Logo" /></NavLink>
                 {isAuth &&<div className={s.navbar__tasks}> <NavLink to="/manual">Учебник</NavLink> </div>}
                 {isAuth &&<div className={s.navbar__tasks}> <NavLink to="/task">Тренажер</NavLink> </div>}
-               { !isAuth &&<div className={s.navbar__login}> <button onClick={()=> setActiveModal(true)}>Войти</button> </div>}
-                {!isAuth &&<div className={s.navbar__registrathion}><NavLink to='/registrahion'>Регистрация</NavLink></div>}
+               { !isAuth &&<div className={s.navbar__login}> 
+                <button value="login" onClick={(e)=> {
+                    setActiveModal(true)
+                    setNameButton('login') 
+                    }}>
+                        Войти
+                        </button> 
+                    </div>}
+                {!isAuth &&<div className={s.navbar__registrathion}><button onClick={()=> {
+                    setActiveModal(true)
+                    setNameButton('registration')
+                    } }>Регистрация</button></div>}
                 {isAuth &&<div  className={s.navbar__login} onClick={()=>dispatch(logout())}>Выход</div>}
-
             </div>
-            <Modal activeModal={activeModal} setActiveModal={setActiveModal}   >  
-                <Login />
-            </Modal>
+            {
+                nameButton === 'login' ?
+                    <Modal activeModal={activeModal} setActiveModal={setActiveModal}>  
+                        <Login />
+                    </Modal>
+                : 
+                    <Modal activeModal={activeModal} setActiveModal={setActiveModal}>  
+                        <Regestration />
+                    </Modal>
+            }
             
         </div>
     );

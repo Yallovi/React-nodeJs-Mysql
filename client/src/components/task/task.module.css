@@ -3,7 +3,6 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-top: 50px;
     color: #333;
     align-items: center;
 }
@@ -13,6 +12,7 @@ a{
 .container__title{
     margin-bottom:50px ;
     color: #333;
+    margin-top: 100px;
 }
 .item{
     background: #fff;
@@ -39,7 +39,7 @@ a{
 
 .containerBlock{
     margin: 0 auto;
-    margin-top: 15px;
+    /* margin-top: 15px; */
     max-width: 1380px;
     display: flex;
 }
@@ -50,6 +50,7 @@ a{
     padding: 15px;
     max-height: 150px;
     min-height: 150px;
+    margin-top:100px
 }
 .formContent{
     margin-left: 50px;
@@ -58,6 +59,7 @@ a{
     box-shadow: rgb(33 33 33 / 10%) 0px 4px 4px;
     padding: 20px;
     width: 100%;
+    margin-top: 100px
 }
 .form_block{
     border-radius: 7px;
@@ -138,4 +140,8 @@ table {
     color: green;
     margin-top: 20px;
     display: inline-block;
+}
+.taskBlock__title{
+    margin-top: 0;
+    color: black
 }
