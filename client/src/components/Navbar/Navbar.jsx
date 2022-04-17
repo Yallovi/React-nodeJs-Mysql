@@ -22,17 +22,17 @@ const Navbar = () => {
         <div className={s.navbar}>
             <div className={s.container}>
                 <NavLink to="/home" ><img className={s.navbar__logo} src={logo} alt="Logo" /></NavLink>
-                {isAuth &&<div className={s.navbar__tasks}> <NavLink to="/manual">Учебник</NavLink> </div>}
-                {isAuth &&<div className={s.navbar__tasks}> <NavLink to="/task">Тренажер</NavLink> </div>}
+                {<div > <NavLink className={s.navbar__tasks} to="/manual">Учебник</NavLink> </div>}
+                <div> <NavLink className={s.navbar__tasks} to="/task">Тренажер</NavLink> </div>
                { !isAuth &&<div className={s.navbar__login}> 
-                <button value="login" onClick={(e)=> {
+                <button className={s.button} value="login" onClick={(e)=> {
                     setActiveModal(true)
                     setNameButton('login') 
                     }}>
                         Войти
                         </button> 
                     </div>}
-                {!isAuth &&<div className={s.navbar__registrathion}><button onClick={()=> {
+                {!isAuth &&<div className={s.navbar__registrathion}><button className={s.button} onClick={()=> {
                     setActiveModal(true)
                     setNameButton('registration')
                     } }>Регистрация</button></div>}
