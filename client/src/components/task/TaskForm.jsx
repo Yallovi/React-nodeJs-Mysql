@@ -24,7 +24,7 @@ const TaskForm = (props) => {
 
     });
 
-    const values = useSelector(state => state.taskReducer.values);
+    const values = useSelector(state => state.taskReducer.values)
     const messageSuccess =  useSelector(state => state.taskReducer.messageSuccess); 
     
     const styles ={
@@ -99,15 +99,17 @@ const TaskForm = (props) => {
                 </tr>
                 {values.length ?
                 values.map((obj, i) =>{
+                    console.log('values =>', values)
                 return(
                     i < 12 ?
                         
                             <tbody>
                                 <tr>
-                                    <th key={i}> {obj.id} </th> 
-                                    <th key={i}> {obj.name} </th> 
-                                    <th key={i}> {obj.books} </th> 
-                                    <th key={i}> {obj.genre} </th> 
+                                    <th key={i}> {obj.id_author} </th> 
+                                    <th key={i}> {obj.last_name} <br/> {obj.first_name} <bt/> {obj.patronymic}
+                                    </th> 
+                                    <th key={i}> {obj.name} <br /> {obj.date} <br/> {obj.descr} </th> 
+                                    <th key={i}> {obj.id_genre} <br /> {obj.name_genre} <br/> {obj.description_genre} </th> 
 
                                 </tr>
                             </tbody>

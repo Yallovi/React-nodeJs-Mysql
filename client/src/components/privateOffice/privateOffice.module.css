@@ -1,0 +1,49 @@
+.main_block {
+    width: 800px;
+    height: 100%;
+    background-color: #fff;
+    position: relative;
+    top: 200px;
+    left: 30%;
+}
+.circle_image{
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-bottom: 50px;
+}
+.circle_image img {
+    width:  200px;
+    height: 200px;
+    border-radius: 50%;
+}
+.circle_image__button{
+    margin-left: 20px;
+    padding: 12px 30px;
+    border: none;
+    background: linear-gradient(0.25turn, #1560ebf0, #1357d2f0);
+    font-size: 0.95em;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 7px 9px rgb(33 33 33 / 20%);
+    transition: 0.3s ease;
+    margin-bottom: 50px;
+
+}
+.block_form{
+    padding-left: 20px;
+}
+.block_input_form{
+    font-size: 1.05em;
+    padding: 10px;
+    border: 1px solid #a9a9a9;
+    color: #666;
+    border-radius: 3px;
+    width: 200px;
+    box-sizing: border-box;
+    margin-bottom: 30px;
+}
+.block_label_form{
+    color: #1560ebf0;
+    font-size: 0.95em;
+}

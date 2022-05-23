@@ -12,6 +12,7 @@ import Tasks from './components/task/TaskForm';
 import Manual from './components/Manual/Manual';
 import ManualChapter from './components/Manual/ManualChapter';
 import MainScreen from './components/main-screen/MainScreen';
+import PrivateOffice from './components/privateOffice/PrivateOffice';
 
 function App() {
   const isAuth = useSelector(state => state.authReducer.isAuth);
@@ -33,6 +34,7 @@ function App() {
       <Route path="/manual" component={Manual} />
       <Route path="/taskForm" component={Tasks} />
       <Route path="/manualChapter" component={ManualChapter} />
+      <Route path="/privateOffice"  component={PrivateOffice} />
       {!isAuth &&
         <Switch>
           <Route path="/login" component={Login} />
