@@ -1,4 +1,5 @@
 const response = require('../response');
+const dbLibrary = require('../settings/dbLibrary');
 const db = require('../settings/db');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -24,7 +25,7 @@ exports.users = (req, res) => {
 exports.add =(req, res) => {
         const postData = req.body.task; 
         console.log('postData: ', postData);
-        db.query(`${postData}`, (error, rows) =>{
+        dbLibrary.query(`${postData}`, (error, rows) =>{
             if(error) {
                 response.status(404, error, res);
                 
