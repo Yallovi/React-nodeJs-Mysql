@@ -64,6 +64,37 @@ exports.signup =(req, res) => {
         });
 };
 
+exports.privateOffice =(req, res) => {
+    console.log(req)
+
+    // db.query("SELECT `id`, `email`, `name` FROM login WHERE `email` = '"+ req.body.email +"'" , (error, rows, fields) =>{
+    //    if(error){
+    //        response.status(400, { message: 'server not found'}, error, res);
+    //    } else if (typeof rows !== 'undefined' && rows.length > 0){
+    //        const row = JSON.parse(JSON.stringify(rows));
+    //        row.map(rw =>{
+    //            response.status(302, {message: ` Пользователь с таки email - ${rw.email} уже существует `}, res);
+    //            return true;
+    //        });
+    //    }else {    
+           const name = req.body.name;
+           const last_name = req.body.last_name
+           const status = req.body.status;
+        //    const salt = bcrypt.genSaltSync(15);
+        //    const password = bcrypt.hashSync(req.body.password, salt);
+
+           const sql = ("INSERT INTO `login` (`name`, `last_name`, `status`)  VALUES('"+ name +"', '"+ last_name +"', '"+ status +"')");
+           db.query(sql, (error, results) => {
+            if(error){
+                response.status(400, error, res);
+            } else {
+                response.status(200, {message: `Регистрация прошла успешно`, results}, res);
+            }
+           });
+    //    }
+    // });
+};
+
 exports.signin = (req, res) => {
     db.query("SELECT `id`, `email`, `password` FROM `login` WHERE `email` = '"+ req.body.email +"'", (error, rows, fields) => {
         if(error){

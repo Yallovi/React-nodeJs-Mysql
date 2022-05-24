@@ -32,6 +32,13 @@ export const authApi = {
             .then(response =>{
                 return response
             });
+    },
+    privateOffice(name, last_name, status){
+        console.log(name, last_name, status)
+        return instance.post(`auth/privateOffice`, {name,last_name,status})
+            .then(response =>{
+                return response
+            });
     }
 
 };

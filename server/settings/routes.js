@@ -19,4 +19,7 @@ module.exports = (app) => {
     app
     .route('/api/auth/authentication')
     .get(authMiddleware ,usersController.authentication);
+    app
+        .route('/api/auth/privateOffice')
+        .post(usersController.privateOffice);
 };
