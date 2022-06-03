@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import s from './task.module.css';
+import s from './playground.module.css';
 import{Field, reduxForm} from 'redux-form';
 import { Textarea } from '../../common/FormsControll/FormsControls';
 import {connect} from 'react-redux';
@@ -15,7 +15,7 @@ import {setStatusCode} from '../../reducers/taskReducer'
 
  
 
-const TaskForm = (props) => {
+const Playground = (props) => {
     const dispatch = useDispatch();
     const [] = useState(() =>{
         const savedTitle = localStorage.getItem('title');
@@ -46,28 +46,6 @@ const TaskForm = (props) => {
     return (
         <div>
         <div className={s.containerBlock}>
-
-            <div className={s.wrapperTaskBlock}>
-                <div className={s.taskBlock}>
-                    <h3 className={s.taskBlock__title}>Задание {props.id}</h3>
-                    <div className={s.taskInfo}>
-                        <p>{props.title}</p>   
-                    </div> 
-                </div>
-
-                <div className={s.taskBlockPremium}>
-                    <h3 className={s.taskBlock__title}>Решение задания</h3>
-                    <div className={s.taskInfoPremium}>
-                        <div className={s.wrapperImageLock}>
-                            <img className={s.imageLock} src={lock} alt="" />
-                        </div>
-                        <div className={s.wrapperText}>
-                            Решения заданий доступны только <br/>
-                                <span className={s.wrapperLabel}>премиум-пользователям.</span>
-                            </div>
-                    </div> 
-                </div>
-            </div>
             <div className={s.formContent}>
                 <div className={s.form_block}>
                     <form onSubmit={props.handleSubmit}>
@@ -89,17 +67,17 @@ const TaskForm = (props) => {
                     <span className = {s.formSummarySuccess}>{messageSuccess}</span>
                 }      
             </div>
-        </div>
-
-        <div  className={s.responseBlock}>
             <div className={values.length ? s.diagramm : s.diagrammTwoVariant}> 
                 <iframe width="900x" height="500px" style={styles.diagram} allowtransparency="true" allowfullscreen="true" scrolling="no" title="Embedded DrawSQL IFrame" frameborder="0" src="https://drawsql.app/yallovi/diagrams/diplom/embed"></iframe>
             </div>
+        </div>
+
+        <div  className={s.responseBlock}>
                 
             <div className={s.wrapperTable}>
             
             {values.length ?
-            <table className={s.table}>
+            <table className={s.table_response}>
                 <tr>
                     <th>id</th>
                     <th>Author</th>
@@ -142,7 +120,7 @@ const TaskForm = (props) => {
 
 // export default TaskForm;
 
-const TaskReduxForm = reduxForm({form: 'taskForm'})(TaskForm);
+const TaskReduxForm = reduxForm({form: 'taskForm'})(Playground);
 
 const Tasks = (props) => {
     const onSubmit = (formData) => {

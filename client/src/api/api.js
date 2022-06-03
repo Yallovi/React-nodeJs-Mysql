@@ -1,9 +1,11 @@
 import axios from "axios";
 import {setUser} from "../reducers/userReducer";
+import {useDispatch} from 'react-redux';
 
 const instance = axios.create({
     baseURL: 'http://localhost:5000/api/',
 });
+
 
 export const reqApi = async(task) => {
     return await axios.post(`http://localhost:5000/api/users/add`, {task})
@@ -37,6 +39,20 @@ export const authApi = {
         console.log(name, last_name, status)
         return instance.post(`auth/privateOffice`, {name,last_name,status})
             .then(response =>{
+                return response
+            });
+    },
+    progress(userId, lessonId, lessonTask){
+        console.log(userId, lessonId, lessonTask)
+        return instance.post(`auth/progress`, {userId, lessonId, lessonTask})
+            .then(response =>{
+                return response
+            });
+    },
+    getProgress(userId){
+        return instance.post(`auth/getProgress`, {userId })
+            .then(response =>{
+                console.log(response);
                 return response
             });
     }

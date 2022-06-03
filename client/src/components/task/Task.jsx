@@ -25,31 +25,70 @@ const Task = () => {
     }
 
     return (
-        <div>
-            <div className={s.container} >
-                <h2 className={s.container__title}>Доступные задания</h2>
+        <><div>
+            <div className={s.container}>
+                <h2 className={s.container__title}>Выберите  уровень</h2>
                 {isAuth === false ? <div style={styles.message}>Чтоб Разблакировать все уроки войдите в аккаунт </div> : null}
                 <div className={s.Mb}>
-                { task.map((task, index) =>{
-                    return (
-                        <div>
-                            <NavLink key={task.id} onClick={()=>  
-                            dispatch(setTask(task.id, task.title))} 
-                            title={task.title} to={{
-                                pathname: isAuth === false && index >= 2 ? 'task' : 'taskForm'}}>
-                        <div  className={isAuth === false && index >=2 ? s.isAuthItem : s.item} key={task.id}>
-                        <p className={s.item__title}>#{task.id} {task.title}</p>
-                        {isAuth === false && index >=2 &&(
-                            <div ><img style={styles.lock} src={lock} alt="" /></div>
-                            )}
-                    </div></NavLink>
+                    <div className={s.level_junior}>
+                        <div className={s.item} key={task.id}>
+                            <p className={s.item__title}> Для начинающих</p>
                         </div>
-                    )})}
+                        
+                        <div className={s.level} key={task.id}>
+                            {
+                                task.map((task, index) => {
+                                    return <div className={s.task}>
+                                        <NavLink onClick={()=>
+                                            dispatch(setTask(task.id, task.title))}
+                                            title={task.title} to={{
+                                                pathname: isAuth === false && index >= 2 ? 'task' : 'taskForm'}}>
+                                        #{task.id}. {task.title}
+                                        </NavLink>
+                                         </div>
+                                })
+                            }
+                        </div>
+
+                    </div>
+                    
+                    <div className={s.level_senor}>
+                        <div className={s.item} key={task.id}>
+                            <p className={s.item__title}>Для профи</p>
+                        </div>
+
+                        <div className={s.level} key={task.id}>
+                            {
+                                task.map(task => {
+                                    return <div className={s.task}>
+                                        <NavLink to={''}>
+                                        #{task.id}. {task.title}
+                                        </NavLink>
+                                         </div>
+                                })
+                            }
+                        </div>
+                    </div>
+                    
                 </div>
-            
+                {/* { task.map((task, index) =>{
+        return (
+            <div>
+                <NavLink key={task.id} onClick={()=>
+                dispatch(setTask(task.id, task.title))}
+                title={task.title} to={{
+                    pathname: isAuth === false && index >= 2 ? 'task' : 'taskForm'}}>
+            <div  className={isAuth === false && index >=2 ? s.isAuthItem : s.item} key={task.id}>
+            <p className={s.item__title}>#{task.id} {task.title}</p>
+            {isAuth === false && index >=2 &&(
+                <div ><img style={styles.lock} src={lock} alt="" /></div>
+                )}
+        </div></NavLink>
             </div>
-            <Footer/>
-        </div>    
+        )})} */}
+            </div>
+
+        </div><Footer /></>
             
     )
 }

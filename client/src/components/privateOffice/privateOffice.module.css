@@ -48,3 +48,30 @@
     color: #1560ebf0;
     font-size: 0.95em;
 }
+
+.progress_block{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: 50px;
+    margin-right: 50px;
+    padding: 15px;
+    padding-bottom: 100px;
+    border: 1px solid #4BD0A0;
+}
+.progress_title{ 
+    color: #000;
+    margin-bottom: 50px
+}
+.progress_success{
+    color: rgb(93, 204, 93);
+    margin-bottom: 50px
+}
+.progress_descr {
+    margin-top: 50px;
+}
+.margin{
+    margin-top: 500px;
+}
+.progress_reject{ 
+    display: block
+}

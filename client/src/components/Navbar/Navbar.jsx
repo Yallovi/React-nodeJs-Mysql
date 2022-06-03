@@ -8,7 +8,7 @@ import { logout } from '../../reducers/authReducer';
 import Modal from '../modal-window/Modal';
 import Login from '../registration/Login';
 import Regestration from '../registration/Regestration';
-
+import privateOffice from '../../assets/image/circle-image.png'
  
 const Navbar = () => {
     const isAuth = useSelector(state => state.authReducer.isAuth);
@@ -24,6 +24,7 @@ const Navbar = () => {
                 <NavLink to="/home" ><img className={s.navbar__logo} src={logo} alt="Logo" /></NavLink>
                 {<div > <NavLink className={s.navbar__tasks} to="/manual">Учебник</NavLink> </div>}
                 <div> <NavLink className={s.navbar__tasks} to="/task">Тренажер</NavLink> </div>
+                <div> <NavLink className={s.navbar__tasks} to="/playground">Playground</NavLink> </div>
                { !isAuth &&<div className={s.navbar__login}> 
                 <button className={s.button} value="login" onClick={(e)=> {
                     setActiveModal(true)
@@ -36,7 +37,14 @@ const Navbar = () => {
                     setActiveModal(true)
                     setNameButton('registration')
                     } }>Регистрация</button></div>}
-                {isAuth &&<div  className={s.navbar__login} onClick={()=>dispatch(logout())}>Выход</div>}
+                {isAuth &&(
+                <><div className={s.navbar__login} onClick={() => dispatch(logout())}>Выход</div>
+                <div className={'s.privateOffice'}> 
+                <NavLink to={'/privateOffice'}>
+                    <img src={privateOffice} className={s.privateOffice_img} alt="" />
+                </NavLink>
+                </div></>
+                )}
             </div>
             {
                 nameButton === 'login' ?

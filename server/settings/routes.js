@@ -22,4 +22,11 @@ module.exports = (app) => {
     app
         .route('/api/auth/privateOffice')
         .post(usersController.privateOffice);
+    app
+    .route('/api/auth/progress')
+    .post(usersController.progress);
+
+    app
+    .route('/api/auth/getProgress')
+    .post(usersController.getProgress);
 };

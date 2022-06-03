@@ -24,7 +24,6 @@ exports.users = (req, res) => {
 
 exports.add =(req, res) => {
         const postData = req.body.task; 
-        console.log('postData: ', postData);
         dbLibrary.query(`${postData}`, (error, rows) =>{
             if(error) {
                 response.status(404, error, res);
@@ -95,6 +94,34 @@ exports.privateOffice =(req, res) => {
     // });
 };
 
+exports.progress =(req, res) => {
+    console.log(req)  
+     db.query("SELECT `lessonId`, `userId`, `lessonTask` FROM progress WHERE `lessonId` = '"+ req.body.lessonId +"'" , (error, rows, fields) =>{
+           if(error){
+               response.status(400, { message: 'server not found'}, error, res);
+           } else if (typeof rows !== 'undefined' && rows.length > 0){
+               const row = JSON.parse(JSON.stringify(rows));
+               row.map(rw =>{
+                   response.status(302, {message: ` Этот урок - ${rw.lessonTask} вы уже проходили `}, res);
+                   return true;
+               });
+           }else {   
+           const userId = req.body.userId;
+           const lessonId = req.body.lessonId
+           const lessonTask = req.body.lessonTask;
+
+           const sql = ("INSERT INTO `progress` (`userId`, `lessonId`, `lessonTask`)  VALUES('"+ userId +"', '"+ lessonId +"', '"+ lessonTask +"')");
+           db.query(sql, (error, results) => {
+            if(error){
+                response.status(400, error, res);
+            } else {
+                response.status(200, {message: `Прогресс добавлен успешно`, results}, res);
+            }
+           });
+              }
+    });  
+};
+
 exports.signin = (req, res) => {
     db.query("SELECT `id`, `email`, `password` FROM `login` WHERE `email` = '"+ req.body.email +"'", (error, rows, fields) => {
         if(error){
@@ -143,3 +170,46 @@ exports.authentication = (req, res) => {
     }
 };
 
+
+exports.getProgress =(req, res) => { 
+
+        db.query("SELECT `lessonId`, `lessonTask` FROM `progress` WHERE `userId` = '"+ req.body.userId +"'" , (error, rows, fields) =>{
+            if(error){
+                response.status(400, { message: 'server not found'}, error, res);
+            } else if (typeof rows !== 'undefined' && rows.length < 0){
+                const row = JSON.parse(JSON.stringify(rows));
+                row.map(rw =>{
+                    response.status(302, {message: ` Вы не прошли ни одного урока `}, res);
+                    return true;
+                });
+            }else {   
+            const userId = req.body.userId;
+ 
+            const sql = ("SELECT `lessonId`, `lessonTask` FROM `progress` WHERE `userId` = '"+ req.body.userId +"'");
+            db.query(sql, (error, results) => {
+             if(error){
+                 response.status(400, error, res);
+             } else {
+                 response.status(200, {message: `Ответ получен успешно`, results}, res);
+             }
+            });
+               }
+     });  
+              
+
+};
+
+// const userId = req.body.userId;
+ 
+// const sql = ("SELECT `lessonId`, `lessonTask` FROM `progress` WHERE `userId` = '"+ req.body.userId +"'");
+// db.query(sql, (error, rows, results) => {
+//     console.log('rows =>', rows.length <= 0)
+//  if(error){
+//      response.status(400, error, res);
+//  } else if (rows.length <= 0){
+//      response.status(302, error, res)
+//  }
+//   else {
+//      response.status(200, {message: `Ответ получен успешно`, results}, res);
+//  }
+// });

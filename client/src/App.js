@@ -13,6 +13,11 @@ import Manual from './components/Manual/Manual';
 import ManualChapter from './components/Manual/ManualChapter';
 import MainScreen from './components/main-screen/MainScreen';
 import PrivateOffice from './components/privateOffice/PrivateOffice';
+import Playground from './components/playGround/playground';
+import Literals from './components/Manual/lessons/literals/Literals'
+import SyntaxSqlSelect from './components/Manual/lessons/syntaxSqlSelect/SyntaxSqlSelect'
+import SelectOperatore from './components/Manual/lessons/selectOperatore/SelectOperatore'
+
 
 function App() {
   const isAuth = useSelector(state => state.authReducer.isAuth);
@@ -32,8 +37,14 @@ function App() {
       <Route path="/task" component={Task} />
       <Route path="/manual" component={Manual} />
       <Route path="/taskForm" component={Tasks} />
-      <Route path="/manualChapter" component={ManualChapter} />
+      <Route path="/basic-database-concepts" component={ManualChapter} />
+      <Route path="/Literals" component={Literals} />
+      <Route path="/syntax-sql-select" component={SyntaxSqlSelect} />
+      <Route path="/select-operatore" component={SelectOperatore} />
+
+      SelectOperatore
       <Route path="/privateOffice"  component={PrivateOffice} />
+      <Route path="/playground"  component={Playground} />
       {!isAuth &&
         <Switch>
           <Route path="/login" component={Login} />
