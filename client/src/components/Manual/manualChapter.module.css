@@ -26,6 +26,7 @@
     line-height: 1.6em;
     /* width: 100%; */
 }
+
 .definition {
     padding: 20px;
     border: 3px solid #92a4e9;
@@ -104,4 +105,10 @@ a:focus:after {
     width: 100%; /*устанавливаем значение 100% чтобы ссылка подчёркивалась полностью*/
 }
 
+
+.test_title{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    color:black !important;
+}
 

@@ -52,7 +52,7 @@ return (
                             <span className={s.number}>1.1</span>
                             <span className={s.item__title}>
                                 <NavLink to={`/basic-database-concepts`} onClick={()=>
-                                    dispatch(setManual(manual.itemTitle, manual.theory))}>
+                                    dispatch(setManual('1.1', 'Основные понятия о базах данных'))}>
                                     {/* isAuth === false && index >= 2 ? 'manual' : */}
                                     Основные понятия о базах данных</NavLink>
                             </span>
@@ -94,8 +94,8 @@ return (
                         <div className={ s.item}>
                             <span className={s.number}>3.1</span>
                             <span className={s.item__title}>
-                                <NavLink to={`/syntax-sql-select`} onClick={()=>dispatch(setManual(manual.itemTitle,
-                                    manual.theory))}>
+                                <NavLink to={`/syntax-sql-select`} onClick={()=>dispatch(setManual('3.1',
+                                    'Основные понятия о базах данных'))}>
                                     {/* isAuth === false && index >= 2 ? 'manual' : */}
                                     Основные понятия о базах данных</NavLink>
                             </span>

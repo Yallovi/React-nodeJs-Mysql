@@ -75,3 +75,17 @@ export const authentication  = () => {
 };
 
 
+// Сделать проверку на авторизацию
+export const testApi = {
+    addTestProgress(userId, lessonTheoryId, lessonTheoryTask){
+        return instance.post(`addTestProgress`, {userId,lessonTheoryId, lessonTheoryTask})
+        .then(response =>{
+            console.log(response);
+            return response; 
+            
+        });
+        
+    }
+}
+
+

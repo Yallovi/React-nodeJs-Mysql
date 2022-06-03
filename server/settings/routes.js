@@ -2,6 +2,7 @@ module.exports = (app) => {
     const authMiddleware = require('../middleware/auth.middleware');
     const passport = require('passport');
     const usersController = require('./../Controller/UsersController');
+    const testController = require('../Controller/TestController');
 
     // app.route('/').get(indexController.index);
     app
@@ -29,4 +30,7 @@ module.exports = (app) => {
     app
     .route('/api/auth/getProgress')
     .post(usersController.getProgress);
+    app
+    .route('/api/addTestProgress')
+    .post(testController.addTestTheory);
 };

@@ -9,7 +9,7 @@ const authMiddleware = require('../middleware/auth.middleware');
 
 setInterval(function () {
     db.query('SELECT 1');
-}, 5000);
+}, 500);
 
 exports.users = (req, res) => {
     db.query('SELECT `id`, `name`, `last_name`, `email`  FROM `login`', (error, rows, fields) =>{
