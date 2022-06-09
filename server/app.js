@@ -1,13 +1,13 @@
 // const express = require('express');
 // const bodyParser = require('body-parser');
-// const mysql = require('mysql2');
+// const mysql = require('mysql');
 
 // const app = express();
 // const port = process.env.PORT || 5000;
 // const cors = require('./middleware/cors.middleware');
 
 // app.use(cors);
-// app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(bodyParser.json());
 
 // // Mysql
@@ -17,7 +17,8 @@
 //     user            : 'root',
 //     port            : 3307,
 //     password        : 'root',
-//     database        : 'testnodejs',
+//     database        : 'library'
+//     // jwt: 'jwt-key'
 // });
 
 

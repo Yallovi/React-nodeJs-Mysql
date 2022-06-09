@@ -9,6 +9,7 @@ const connection = mysql.createConnection({
     database        : config.DBNAME,
 });
 
+
 connection.connect((error) => {
     if(error) {
         return console.log('Ошибка подключения к БД!');

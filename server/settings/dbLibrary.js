@@ -1,21 +1,46 @@
-const mysql = require('mysql');
+const mysql = require('mysql2');
 const config = require('../libraryConfig');
 
-const connection = mysql.createConnection({
+const pool = mysql.createPool({
+    connectionLimit: 100,
     host            : config.HOST,
     user            : config.DBUSER,
     port            : config.PORT,
     password        : config.DBPASSWORD,
     database        : config.DBNAME,
-});
-
-connection.connect((error) => {
-    if(error) {
-        return console.log('Ошибка подключения к БД!');
-    } else {
-        return console.log('Подлючение успешно!');
-    }
-});
+})
 
 
-module.exports = connection;
+// const connection = mysql.createConnection({
+//     host            : config.HOST,
+//     user            : config.DBUSER,
+//     port            : config.PORT,
+//     password        : config.DBPASSWORD,
+//     database        : config.DBNAME,
+// });
+
+
+// app.get('', (req, res) =>{
+//     connection.getConnection((err, connection) =>{
+//         if(err) throw err;
+//         console.log(`connected as id ${connection.threadId}`);
+
+//         connection.query('SELECT * FROM users', (err, rows) =>{
+//             connection.release(); // return the connection to  pool
+
+//             if(!err) {
+//                 res.send(rows);
+//             } else { 
+//                 console.log(err);
+//             }
+//             console.log('The data from beer table are: \n', rows);
+//         });
+
+//     });      
+// });
+
+
+
+
+
+module.exports = pool;

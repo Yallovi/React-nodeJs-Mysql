@@ -5,7 +5,8 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('../config');
 const authMiddleware = require('../middleware/auth.middleware');
-
+const express = require('express');
+const app = express();
 
 setInterval(function () {
     db.query('SELECT 1');
@@ -22,7 +23,36 @@ exports.users = (req, res) => {
 
 };
 
-exports.add =(req, res) => {
+// const lessonJuniorOne = [ 'select', 'lessonId', 'lessonTask', 'from', 'users' ].filter(item =>{
+//     if (item !== 'select' && item !== 'from' && item !== 'users') return item
+// })
+
+
+
+exports.lessonJuniorOne =(req, res) => {
+    const postData = req.body.query
+    const arraySlice = postData.replace(/['"`«»]/g, '').toLowerCase().split(' ')
+    const lessonJuniorOne = []
+    if (arraySlice[0] === 'select' && arraySlice[2] === 'from' || arraySlice[3] === 'from'){
+        arraySlice.filter(item =>{
+            if (item !== 'select' && item !== 'from' && item !== 'users') return lessonJuniorOne.push(item)
+        })
+    }
+    
+    console.log(lessonJuniorOne); 
+
+           const sql = ("SELECT " + ` ${lessonJuniorOne} ` + " FROM `users`");
+           console.log('sql =>', sql)
+           db.query(sql, (error, results) => {
+            if(error){
+                response.status(400, error, res);
+            } else {
+                response.status(200, {message: `Регистрация прошла успешно`, results}, res);
+            }
+           });
+};
+
+exports.add_1 =(req, res) => {
         const postData = req.body.task; 
         dbLibrary.query(`${postData}`, (error, rows) =>{
             if(error) {
@@ -33,6 +63,49 @@ exports.add =(req, res) => {
             }
         });
 };
+
+exports.add = async(req, res) => {
+    const postData = req.body.task;
+
+    dbLibrary.getConnection(function(err, connection) {
+        if (err) throw err; // not connected!
+
+        connection.beginTransaction((err) => {
+            if (err) {
+                throw err;
+            }
+
+             // Use the connection
+            connection.query(postData, function (error, results, fields) {
+                if (error) {
+                    return connection.rollback(() => {
+                        throw error
+                    })
+                }
+                connection.commit((error) => {
+                    if (error) {
+                        return connection.rollback(() => {
+                            throw error
+                        })
+                    }
+                    console.log('success')
+                })
+                // When done with the connection, release it.
+                console.log(results);
+                connection.release();
+            
+                // Handle error after the release.
+                if (error) throw error;
+            
+                // Don't use the connection here, it has been returned to the pool.
+            });
+            })
+      
+      });
+    
+}
+
+
 exports.signup =(req, res) => {
 
         db.query("SELECT `id`, `email`, `name` FROM login WHERE `email` = '"+ req.body.email +"'" , (error, rows, fields) =>{

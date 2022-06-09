@@ -33,4 +33,7 @@ module.exports = (app) => {
     app
     .route('/api/addTestProgress')
     .post(testController.addTestTheory);
+    app
+    .route('/api/lessonJuniorOne')
+    .post(usersController.lessonJuniorOne);
 };

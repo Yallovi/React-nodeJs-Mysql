@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('./middleware/cors.middleware');
 const app = express();
 const port = process.env.PORT || 5000;
+const mysql = require('mysql');
 // const passport = require('passport');
 
 app.use(bodyParser.urlencoded({ extended: true }));
