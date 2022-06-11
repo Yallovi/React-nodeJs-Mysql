@@ -10,7 +10,7 @@ const authMiddleware = require('../middleware/auth.middleware');
 
 exports.addTestTheory =(req, res) => {
 
-    db.query("SELECT `lessonTheoryId`, `userId`, `lessonTheoryTask` FROM progress WHERE `lessonTheoryId` = '"+ req.body.lessonTheoryId +"'" , (error, rows, fields) =>{
+    db.query("SELECT `idQuestion`, `idUser` FROM progress WHERE `idQuestion` = '"+ req.body.lessonTheoryId +"'" , (error, rows, fields) =>{
         if(error){
             response.status(400, { message: 'server not found'}, error, res);
         } else if (typeof rows !== 'undefined' && rows.length > 0){
@@ -23,9 +23,8 @@ exports.addTestTheory =(req, res) => {
 
            const userId = req.body.userId;
            const lessonTheoryId = req.body.lessonTheoryId
-           const lessonTheoryTask = req.body.lessonTheoryTask;
 
-           const sql = ("INSERT INTO `progress` (`userId`, `lessonTheoryId`, `lessonTheoryTask`)  VALUES('"+ userId +"', '"+ lessonTheoryId +"', '"+ lessonTheoryTask +"')");
+           const sql = ("INSERT INTO `progress` (`idUser`, `idQuestion`)  VALUES('"+ userId +"', '"+ lessonTheoryId +"')");
            db.query(sql, (error, results) => {
             if(error){
                 response.status(400, error, res);

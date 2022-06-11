@@ -104,4 +104,8 @@ a:focus:after {
     width: 100%; /*устанавливаем значение 100% чтобы ссылка подчёркивалась полностью*/
 }
 
-
+.test_title{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    color:black !important;
+}

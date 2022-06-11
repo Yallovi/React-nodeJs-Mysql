@@ -11,8 +11,9 @@ const TestManualChapter = () => {
     const userId = useSelector(state => state.user.currentUser.userId)
     const isAuth = useSelector(state => state.authReducer.isAuth);
     const lessonTheoryId = useSelector(state => state.manualReducer.itemTitle);
+    console.log(lessonTheoryId)
     const lessonTheoryTask = useSelector(state => state.manualReducer.theory);
-
+console.log(lessonTheoryTask);
 
     const [alertSuccess, setAlertSuccess] = useState()
     const [alertError, setAlertError] = useState()
@@ -29,10 +30,14 @@ const TestManualChapter = () => {
           }
     });
     const onSubmit = data => {
+        // сделать проверку на авторизацию
         const {answer_one, answer_two, answer_three, answer_four} = data;
         if (answer_one === true && (answer_two && answer_three  && answer_four) === false) {
-            testApi.addTestProgress(userId,lessonTheoryId,lessonTheoryTask )
-            .then(data => alert(data.values.message))
+            console.log(userId, lessonTheoryId)
+            if (isAuth) {
+                testApi.addTestProgress(userId,lessonTheoryId )
+                .then(data => alert(data.values.message))   
+            }
             setAlertSuccess(true)
         }else {
             setAlertError(true)

@@ -17,7 +17,11 @@ import Playground from './components/playGround/playground';
 import Literals from './components/Manual/lessons/literals/Literals'
 import SyntaxSqlSelect from './components/Manual/lessons/syntaxSqlSelect/SyntaxSqlSelect'
 import SelectOperatore from './components/Manual/lessons/selectOperatore/SelectOperatore'
-
+import ConditionWhere from './components/Manual/lessons/ConditionWhere/ConditionWhere'
+import NumericOperation from './components/Manual/lessons/NumericOperation/NumericOperation'
+import GroupingResults from './components/Manual/lessons/OperationGrouping/GroupingResults'
+import CreateDatabase from './components/Manual/lessons/CreateDatabase/CreateDatabase'
+import Lesson3Test from './components/Manual/lessons/LessonTest/Lesson3Test';
 
 function App() {
   const isAuth = useSelector(state => state.authReducer.isAuth);
@@ -39,10 +43,19 @@ function App() {
       <Route path="/taskForm" component={Tasks} />
       <Route path="/basic-database-concepts" component={ManualChapter} />
       <Route path="/Literals" component={Literals} />
-      <Route path="/syntax-sql-select" component={SyntaxSqlSelect} />
-      <Route path="/select-operatore" component={SelectOperatore} />
+      <Route path={isAuth===false ? '#' : "/syntax-sql-select"} component={SyntaxSqlSelect} />
+      <Route path= {isAuth===false ? '#' :"/select-operatore"} component={SelectOperatore} />
+      <Route path={isAuth===false ? '#' : "/syntax-condition-where"} component={ConditionWhere} />
+      <Route path= {isAuth===false ? '#' :"/syntax-numeric-operation"} component={NumericOperation} />
+      <Route path= {isAuth===false ? '#' :"/syntax-grouping-results"} component={GroupingResults} />
+      <Route path= {isAuth===false ? '#' :"/guide-create-database"} component={CreateDatabase} />
+      <Route path= {isAuth===false ? '#' :"/syntax/test"} component={Lesson3Test} />
 
-      SelectOperatore
+
+      
+
+
+      {/* SelectOperatore */}
       <Route path="/privateOffice"  component={PrivateOffice} />
       <Route path="/playground"  component={Playground} />
       {!isAuth &&

@@ -52,12 +52,14 @@ return (
                             <span className={s.number}>1.1</span>
                             <span className={s.item__title}>
                                 <NavLink to={`/basic-database-concepts`} onClick={()=>
-                                    dispatch(setManual('1.1', 'Основные понятия о базах данных'))}>
+                                    dispatch(setManual(1, 'Основные понятия о базах данных'))}>
                                     {/* isAuth === false && index >= 2 ? 'manual' : */}
                                     Основные понятия о базах данных</NavLink>
                             </span>
 
+                            {/* {isAuth === false &&(
                             <div><img style={styles.lock} src={lock} alt="" /></div>
+                            )} */}
                         </div>
                     </div>
                 </div>
@@ -73,13 +75,14 @@ return (
                         <div className={ s.item}>
                             <span className={s.number}>2.1</span>
                             <span className={s.item__title}>
-                                <NavLink to="/Literals" onClick={()=>dispatch(setManual(manual.itemTitle,
-                                    manual.theory))}>
+                                <NavLink to="/Literals" onClick={()=>dispatch(setManual(2))}>
                                     {/* isAuth === false && index >= 2 ? 'manual' : */}
                                     Литералы</NavLink>
                             </span>
 
+                            {/* {isAuth === false &&(
                             <div><img style={styles.lock} src={lock} alt="" /></div>
+                            )} */}
                         </div>
                     </div>
                 </div>
@@ -91,7 +94,7 @@ return (
                         <span className={s.chapter__title}> Основы выборки данных</span>
                     </div>
                     <div className={ s.items}>
-                        <div className={ s.item}>
+                    <div style={isAuth===false  ? {opacity: '0.5' } : null} className={ s.item}>
                             <span className={s.number}>3.1</span>
                             <span className={s.item__title}>
                                 <NavLink to={`/syntax-sql-select`} onClick={()=>dispatch(setManual('3.1',
@@ -99,9 +102,11 @@ return (
                                     {/* isAuth === false && index >= 2 ? 'manual' : */}
                                     Основные понятия о базах данных</NavLink>
                             </span>
+                            {isAuth === false &&(
                             <div><img style={styles.lock} src={lock} alt="" /></div>
+                            )}
                         </div>
-                        <div className={ s.item}>
+                        <div style={isAuth===false  ? {opacity: '0.5' } : null} className={ s.item}>
                             <span className={s.number}>3.2</span>
                             <span className={s.item__title}>
                                 <NavLink to={`/select-operatore`} onClick={()=>dispatch(setManual(manual.itemTitle,
@@ -109,27 +114,60 @@ return (
                                     {/* isAuth === false && index >= 2 ? 'manual' : */}
                                     Операторы выборки данных sql</NavLink>
                             </span>
+                            {isAuth === false &&(
                             <div><img style={styles.lock} src={lock} alt="" /></div>
+                            )}
                         </div>
-                        <div className={ s.item}>
+                        <div style={isAuth===false  ? {opacity: '0.5' } : null} className={ s.item}>
                             <span className={s.number}>3.3</span>
                             <span className={s.item__title}>
-                                <NavLink to={`/syntax-sql-select}`} onClick={()=>dispatch(setManual(manual.itemTitle,
+                                <NavLink to={`/syntax-condition-where`} onClick={()=>dispatch(setManual(manual.itemTitle,
                                     manual.theory))}>
                                     {/* isAuth === false && index >= 2 ? 'manual' : */}
-                                    Основные понятия о базах данных</NavLink>
+                                    Условный оператор WHERE</NavLink>
                             </span>
+                            {isAuth === false &&(
                             <div><img style={styles.lock} src={lock} alt="" /></div>
+                            )}
                         </div>
-                        <div className={ s.item}>
+                        <div style={isAuth===false  ? {opacity: '0.5' } : null} className={ s.item}>
                             <span className={s.number}>3.4</span>
                             <span className={s.item__title}>
-                                <NavLink to={`/syntax-sql-select}`} onClick={()=>dispatch(setManual(manual.itemTitle,
+                                <NavLink to={`/syntax-numeric-operation`} onClick={()=>dispatch(setManual(manual.itemTitle,
                                     manual.theory))}>
                                     {/* isAuth === false && index >= 2 ? 'manual' : */}
-                                    операторы выборки данных sql</NavLink>
+                                    
+                                    Числовые операции (агрегирующие функции)</NavLink>
                             </span>
+                            {isAuth === false &&(
                             <div><img style={styles.lock} src={lock} alt="" /></div>
+                            )}
+                        </div>
+
+                        <div style={isAuth===false  ? {opacity: '0.5' } : null} className={ s.item}>
+                            <span className={s.number}>3.4</span>
+                            <span className={s.item__title}>
+                                <NavLink to={`/syntax-grouping-results`} onClick={()=>dispatch(setManual(manual.itemTitle,
+                                    manual.theory))}>
+                                    {/* isAuth === false && index >= 2 ? 'manual' : */}
+                                    
+                                    Группировка результатов</NavLink>
+                            </span>
+                            {isAuth === false &&(
+                            <div><img style={styles.lock} src={lock} alt="" /></div>
+                            )}
+                        </div>
+                        <div style={isAuth===false  ? {opacity: '0.5' } : null} className={ s.item}>
+                            <span className={s.number}>3.5</span>
+                            <span className={s.item__title} >
+                                <NavLink to={isAuth===false ? `#` : `/syntax/test`} onClick={()=>dispatch(setManual(3))}>
+                                    {/* isAuth === false && index >= 2 ? 'manual' : */}
+                                    Контрольный тест</NavLink>
+                            </span>
+
+                            {isAuth === false &&(
+                            <div><img style={styles.lock} src={lock} alt="" /></div>
+                            )}
                         </div>
 
                     </div>
@@ -138,24 +176,52 @@ return (
             <div className={s.content}>
                 <div className={s.chapter}>
                     <div className={s.label}>
-                        <span className={s.number}>Глава 1</span>
-                        <span className={s.chapter__title}> Введение</span>
+                        <span className={s.number}>Глава 4</span>
+                        <span className={s.chapter__title}> Базы данных и таблицы</span>
                     </div>
                     <div className={ s.items}>
-                        <div className={ s.item}>
-                            <span className={s.number}>1.1</span>
-                            <span className={s.item__title}>
-                                <NavLink to={`/${manual.Link}`} onClick={()=>dispatch(setManual(manual.itemTitle,
+                        <div style={isAuth===false  ? {opacity: '0.5' } : null} className={ s.item}>
+                            <span className={s.number}>4.1</span>
+                            <span className={s.item__title} >
+                                <NavLink to={isAuth===false ? `#` : `/guide-create-database`} onClick={()=>dispatch(setManual(manual.itemTitle,
                                     manual.theory))}>
                                     {/* isAuth === false && index >= 2 ? 'manual' : */}
-                                    Основные понятия о базах данных</NavLink>
+                                    Манипулирование базами данных</NavLink>
                             </span>
 
+                            {isAuth === false &&(
                             <div><img style={styles.lock} src={lock} alt="" /></div>
+                            )}
                         </div>
                     </div>
+                        <div style={isAuth===false  ? {opacity: '0.5' } : null} className={ s.item}>
+                            <span className={s.number}>4.2</span>
+                            <span className={s.item__title} >
+                                <NavLink to={isAuth===false ? `#` : `/guide-create-database`} onClick={()=>dispatch(setManual(manual.itemTitle,
+                                    manual.theory))}>
+                                    {/* isAuth === false && index >= 2 ? 'manual' : */}
+                                    Работы с таблицами БД</NavLink>
+                            </span>
+
+                            {isAuth === false &&(
+                            <div><img style={styles.lock} src={lock} alt="" /></div>
+                            )}
+                        </div>
+                        <div style={isAuth===false  ? {opacity: '0.5' } : null} className={s.item}>
+                            <span className={s.number}>4.3</span>
+                            <span className={s.item__title} >
+                                <NavLink to={isAuth===false ? `#` : `/guide-create-database/test`} onClick={()=>dispatch(setManual(4))}>
+                                    {/* isAuth === false && index >= 2 ? 'manual' : */}
+                                    Контрольный тест</NavLink>
+                            </span>
+
+                            {isAuth === false &&(
+                            <div><img style={styles.lock} src={lock} alt="" /></div>
+                            )}
+                        </div>
                 </div>
             </div>
+            
 
             {/* {manual.map((manual, index) =>{
             return(

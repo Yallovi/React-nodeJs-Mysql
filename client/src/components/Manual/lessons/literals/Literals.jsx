@@ -4,6 +4,7 @@ import s from './literals.module.css';
 import manual from '../../../utils/manual.json';
 import { NavLink } from 'react-router-dom';
 import Footer from '../../../main-screen/footer/Footer'
+import LiteralTest from '../LessonTest/LiteralTest';
 
 export default function Literals() {
 
@@ -61,8 +62,14 @@ export default function Literals() {
                 Значение NULL означает "нет данных", "нет значения". Оно нужно, чтобы отличать визуально пустые значения, такие как строка нулевой длины или "пробел", от того, когда значения вообще нет, даже пустого.
                 </p>
             </div>
+            <h2 className={s.test_title}>Контрольный тест</h2>
+            <span>Какие бывают литералы?</span>
+            <div>
 
+      <LiteralTest />
+            </div>
       </div>
+
       <div className={s.navigation}>
 
 

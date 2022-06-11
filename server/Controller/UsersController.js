@@ -89,8 +89,10 @@ exports.add = async(req, res) => {
                         })
                     }
                     console.log('success')
+                    // response.status(200, results[0], res)
                 })
                 // When done with the connection, release it.
+                response.status(200, results, res)
                 console.log(results);
                 connection.release();
             

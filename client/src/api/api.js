@@ -77,8 +77,8 @@ export const authentication  = () => {
 
 // Сделать проверку на авторизацию
 export const testApi = {
-    addTestProgress(userId, lessonTheoryId, lessonTheoryTask){
-        return instance.post(`addTestProgress`, {userId,lessonTheoryId, lessonTheoryTask})
+    addTestProgress(userId, lessonTheoryId){
+        return instance.post(`addTestProgress`, {userId,lessonTheoryId})
         .then(response =>{
             console.log(response);
             return response; 
